@@ -1,5 +1,7 @@
 # Reproduction Guide
 
+**Repository:** [github.com/aaryanpawar16/Fraud-Triage](https://github.com/aaryanpawar16/Fraud-Triage)
+
 Written for a clean environment. Every test command below was
 actually run during development; the numbers you'll see are what
 they produced, not descriptions of expected behavior.
@@ -13,8 +15,8 @@ they produced, not descriptions of expected behavior.
 ## Setup
 
 ```bash
-git clone <your-repo>
-cd fraud-triage
+git clone https://github.com/aaryanpawar16/Fraud-Triage.git
+cd Fraud-Triage
 pip install -r requirements.txt
 cp .env.example .env   # then edit .env, or export the variables directly
 ```
