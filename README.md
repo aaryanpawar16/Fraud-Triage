@@ -106,17 +106,34 @@ verification environment beyond the two machines mentioned above.
 
 ## Quick start
 
+**macOS / Linux:**
 ```bash
 pip install -r requirements.txt --break-system-packages
 export LLM_PROVIDER=ollama          # or anthropic
 export OLLAMA_MODEL=llama3.1
+```
 
+**Windows (PowerShell):**
+```powershell
+pip install -r requirements.txt
+$env:LLM_PROVIDER = "ollama"        # or anthropic
+$env:OLLAMA_MODEL = "llama3.1"
+```
+
+Environment variables only apply to the terminal window they were set
+in — if you open a new window, set them again there before running
+anything below.
+
+Then, either OS, same commands from here:
+```
 python tests/test_tools.py          # no model needed
 python eval/run_eval.py             # the real 12-case evaluation
 python eval/run_adversarial_test.py # the injection test
 python eval/run_pattern_analysis.py # the ring-detection test
 
-cd website && npm install && npm run dev   # the site, at localhost:3000
+cd website
+npm install
+npm run dev                         # the site, at localhost:3000
 ```
 
 Full setup, including the live demo backend and every test file, is
