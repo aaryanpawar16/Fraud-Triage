@@ -1,0 +1,60 @@
+name: CI
+
+"on":
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  python-tests:
+    name: Python test suite (45 tests, no API key required)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run every test file
+        run: |
+          set -e
+          for f in tests/test_tools.py \
+                   tests/test_harness_mechanics.py \
+                   tests/test_scoring.py \
+                   tests/test_message_translation.py \
+                   tests/test_api_server.py \
+                   tests/test_adversarial.py \
+                   tests/test_pattern_detector.py \
+                   tests/test_pattern_coordinator.py; do
+            echo "=== $f ==="
+            python "$f"
+          done
+
+  website:
+    name: Website type-check and production build
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: website
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+          cache-dependency-path: website/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Type-check
+        run: npx tsc --noEmit
+
+      - name: Production build (all pages)
+        run: npm run build
