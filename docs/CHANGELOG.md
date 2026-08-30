@@ -224,18 +224,6 @@ not a vague "review this."
 
 
 
-**Live, interactive version:** `/api/pattern-check` (in `api_server.py`)
-accepts any number of transactions from the browser and runs the same
-real detector against them — `/ring-check` on the site lets a judge
-submit their own account/device pairs, not just view the pre-planted
-example. Verified the endpoint correctly skips the LLM call entirely
-when no cluster is found (`test_pattern_check_no_cluster_needs_no_llm_call`
-patches `get_client()` to raise if it's ever invoked), and confirmed
-live over real HTTP with no `LLM_PROVIDER` configured at all — it
-succeeded because the code path never needed one.
-
-
-
 ## Main failure mode
 
 The agent's tool loop has a hard cap (`MAX_TOOL_ITERATIONS = 8`). If a
