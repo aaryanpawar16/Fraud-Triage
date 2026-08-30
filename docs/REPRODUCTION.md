@@ -40,6 +40,21 @@ export OLLAMA_MODEL=llama3.1
 export OLLAMA_HOST=http://localhost:11434
 ```
 
+**Windows (PowerShell), same steps:**
+```powershell
+ollama pull llama3.1
+ollama serve                 # skip if already running — check with:
+                              # curl.exe http://localhost:11434
+
+$env:LLM_PROVIDER = "ollama"
+$env:OLLAMA_MODEL = "llama3.1"
+$env:OLLAMA_HOST = "http://localhost:11434"
+```
+
+Environment variables set this way only apply to the terminal window
+you set them in — opening a new window means setting them again there
+before running anything that needs them.
+
 **Cost: $0.** Compute is whatever your own machine costs to run.
 Quality depends heavily on which model you pull — smaller models (7-8B)
 may struggle with the multi-step tool-calling loop; if you see a lot
@@ -52,6 +67,13 @@ tool-reliable model.
 export LLM_PROVIDER=anthropic
 export ANTHROPIC_API_KEY=sk-ant-...   # never commit this
 export ANTHROPIC_MODEL=claude-sonnet-5
+```
+
+**Windows (PowerShell):**
+```powershell
+$env:LLM_PROVIDER = "anthropic"
+$env:ANTHROPIC_API_KEY = "sk-ant-..."   # never commit this
+$env:ANTHROPIC_MODEL = "claude-sonnet-5"
 ```
 
 **Cost: real, from your account's usage.** `eval/run_eval.py` makes 1
