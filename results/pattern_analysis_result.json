@@ -1,0 +1,19 @@
+[
+  {
+    "cluster": {
+      "device_id": "dev_shared_x7",
+      "linked_accounts": [
+        "acct_ring_alpha",
+        "acct_ring_beta"
+      ],
+      "case_ids": [
+        "ring_01_alpha",
+        "ring_02_beta"
+      ]
+    },
+    "assessment": "likely_ring",
+    "confidence": 0.8,
+    "reasoning": "The same device (dev_shared_x7) is being used across two separate accounts, both of which have been deemed legitimate on their own. This pattern of reuse is suspicious and indicates a potential coordinated effort to reuse devices across accounts.",
+    "recommended_action": "Investigate the relationship between these two accounts and the owner of the device dev_shared_x7 to determine if there is a coordinated effort to reuse devices or if these are indeed separate, legitimate transactions on shared devices."
+  }
+]

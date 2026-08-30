@@ -1,0 +1,246 @@
+[
+  {
+    "case_id": "case_01",
+    "transaction": {
+      "transaction_id": "txn_a1", "account_id": "acct_001", "amount_usd": 4200.00,
+      "merchant": "GlobalTech Electronics", "merchant_category": "electronics",
+      "country": "VN", "device_id": "dev_new_9f2", "timestamp": "2026-08-20T03:14:00Z"
+    },
+    "account_history": {
+      "account_age_days": 640, "typical_country": "US",
+      "typical_amount_range_usd": [15, 300],
+      "recent_transactions": [
+        {"amount_usd": 42.10, "country": "US", "minutes_ago": 4020},
+        {"amount_usd": 88.00, "country": "US", "minutes_ago": 8100}
+      ],
+      "prior_flags_count": 0
+    },
+    "device_info": {"device_id": "dev_new_9f2", "reputation_score": 0.12, "is_new_device": true},
+    "ground_truth": "fraud",
+    "rationale_for_scoring_only": "New low-reputation device, country far from typical, amount 14x the account's historical max, no explanatory context. Textbook account-takeover pattern."
+  },
+  {
+    "case_id": "case_02",
+    "transaction": {
+      "transaction_id": "txn_a2", "account_id": "acct_002", "amount_usd": 54.30,
+      "merchant": "Corner Grocery", "merchant_category": "grocery",
+      "country": "US", "device_id": "dev_known_1a", "timestamp": "2026-08-20T18:02:00Z"
+    },
+    "account_history": {
+      "account_age_days": 1200, "typical_country": "US",
+      "typical_amount_range_usd": [10, 120],
+      "recent_transactions": [
+        {"amount_usd": 61.20, "country": "US", "minutes_ago": 1440},
+        {"amount_usd": 33.90, "country": "US", "minutes_ago": 2900}
+      ],
+      "prior_flags_count": 0
+    },
+    "device_info": {"device_id": "dev_known_1a", "reputation_score": 0.95, "is_new_device": false},
+    "ground_truth": "legit",
+    "rationale_for_scoring_only": "Every signal is unremarkable and consistent with 3+ years of account history."
+  },
+  {
+    "case_id": "case_03",
+    "transaction": {
+      "transaction_id": "txn_a3", "account_id": "acct_003", "amount_usd": 610.00,
+      "merchant": "Lisbon Boutique Hotel", "merchant_category": "lodging",
+      "country": "PT", "device_id": "dev_known_7c", "timestamp": "2026-08-21T14:30:00Z"
+    },
+    "account_history": {
+      "account_age_days": 2100, "typical_country": "US",
+      "typical_amount_range_usd": [20, 400],
+      "recent_transactions": [
+        {"amount_usd": 89.00, "country": "PT", "minutes_ago": 600},
+        {"amount_usd": 210.00, "country": "PT", "minutes_ago": 1900},
+        {"amount_usd": 45.00, "country": "FR", "minutes_ago": 4300}
+      ],
+      "prior_flags_count": 0
+    },
+    "device_info": {"device_id": "dev_known_7c", "reputation_score": 0.88, "is_new_device": false},
+    "ground_truth": "legit",
+    "rationale_for_scoring_only": "HARD CASE. Country mismatch and amount above typical range look risky in isolation, but the known device plus a coherent recent trail through PT and FR reads as genuine travel, not takeover. This is the case that should separate a shallow rule-check from real reasoning."
+  },
+  {
+    "case_id": "case_04",
+    "transaction": {
+      "transaction_id": "txn_a4", "account_id": "acct_004", "amount_usd": 1899.00,
+      "merchant": "QuickCoin Exchange", "merchant_category": "crypto",
+      "country": "NG", "device_id": "dev_new_3d", "timestamp": "2026-08-22T02:10:00Z"
+    },
+    "account_history": {
+      "account_age_days": 45, "typical_country": "US",
+      "typical_amount_range_usd": [20, 150],
+      "recent_transactions": [
+        {"amount_usd": 25.00, "country": "US", "minutes_ago": 30},
+        {"amount_usd": 12.50, "country": "US", "minutes_ago": 22},
+        {"amount_usd": 8.00, "country": "US", "minutes_ago": 15}
+      ],
+      "prior_flags_count": 1
+    },
+    "device_info": {"device_id": "dev_new_3d", "reputation_score": 0.08, "is_new_device": true},
+    "ground_truth": "fraud",
+    "rationale_for_scoring_only": "New device, brand-new-ish account with a prior flag, high-risk merchant category, country mismatch, amount 12x typical, AND a burst of small transactions minutes earlier — classic card-testing followed by cash-out."
+  },
+  {
+    "case_id": "case_05",
+    "transaction": {
+      "transaction_id": "txn_a5", "account_id": "acct_005", "amount_usd": 340.00,
+      "merchant": "Northwind Dept Store", "merchant_category": "retail",
+      "country": "US", "device_id": "dev_known_2b", "timestamp": "2026-11-27T09:00:00Z"
+    },
+    "account_history": {
+      "account_age_days": 900, "typical_country": "US",
+      "typical_amount_range_usd": [15, 150],
+      "recent_transactions": [
+        {"amount_usd": 210.00, "country": "US", "minutes_ago": 1440},
+        {"amount_usd": 180.00, "country": "US", "minutes_ago": 2880}
+      ],
+      "prior_flags_count": 0
+    },
+    "device_info": {"device_id": "dev_known_2b", "reputation_score": 0.91, "is_new_device": false},
+    "ground_truth": "legit",
+    "rationale_for_scoring_only": "Amount is above the historical range, but the two prior days show a clear step-up trend (Black Friday week) on the same trusted device. Context resolves what a bare threshold rule would flag."
+  },
+  {
+    "case_id": "case_06",
+    "transaction": {
+      "transaction_id": "txn_a6", "account_id": "acct_006", "amount_usd": 1.00,
+      "merchant": "Random Digital Goods LLC", "merchant_category": "digital_goods",
+      "country": "US", "device_id": "dev_new_5e", "timestamp": "2026-08-23T04:01:00Z"
+    },
+    "account_history": {
+      "account_age_days": 300, "typical_country": "US",
+      "typical_amount_range_usd": [10, 200],
+      "recent_transactions": [
+        {"amount_usd": 1.00, "country": "US", "minutes_ago": 3},
+        {"amount_usd": 1.00, "country": "US", "minutes_ago": 6},
+        {"amount_usd": 1.00, "country": "US", "minutes_ago": 9},
+        {"amount_usd": 1.00, "country": "US", "minutes_ago": 12},
+        {"amount_usd": 1.00, "country": "US", "minutes_ago": 15}
+      ],
+      "prior_flags_count": 0
+    },
+    "device_info": {"device_id": "dev_new_5e", "reputation_score": 0.20, "is_new_device": true},
+    "ground_truth": "fraud",
+    "rationale_for_scoring_only": "Five $1.00 charges to different-feeling merchants a few minutes apart on a brand-new device is the textbook card-testing signature — low individual amounts are exactly why a naive amount-threshold rule misses this."
+  },
+  {
+    "case_id": "case_07",
+    "transaction": {
+      "transaction_id": "txn_a7", "account_id": "acct_007", "amount_usd": 76.00,
+      "merchant": "StreamPlus Subscription", "merchant_category": "subscription",
+      "country": "US", "device_id": "dev_new_6f", "timestamp": "2026-08-24T11:00:00Z"
+    },
+    "account_history": {
+      "account_age_days": 1500, "typical_country": "US",
+      "typical_amount_range_usd": [10, 100],
+      "recent_transactions": [
+        {"amount_usd": 76.00, "country": "US", "minutes_ago": 43200},
+        {"amount_usd": 76.00, "country": "US", "minutes_ago": 86400}
+      ],
+      "prior_flags_count": 0
+    },
+    "device_info": {"device_id": "dev_new_6f", "reputation_score": 0.7, "is_new_device": true},
+    "ground_truth": "legit",
+    "rationale_for_scoring_only": "New device is the only unusual signal — everything else (exact recurring amount, same merchant, same country, long-tenured account) matches a routine monthly subscription charge, plausibly from a new phone."
+  },
+  {
+    "case_id": "case_08",
+    "transaction": {
+      "transaction_id": "txn_a8", "account_id": "acct_008", "amount_usd": 2650.00,
+      "merchant": "LuxWatch Direct", "merchant_category": "luxury_goods",
+      "country": "AE", "device_id": "dev_new_8a", "timestamp": "2026-08-25T22:47:00Z"
+    },
+    "account_history": {
+      "account_age_days": 210, "typical_country": "GB",
+      "typical_amount_range_usd": [30, 220],
+      "recent_transactions": [
+        {"amount_usd": 45.00, "country": "GB", "minutes_ago": 2100}
+      ],
+      "prior_flags_count": 0
+    },
+    "device_info": {"device_id": "dev_new_8a", "reputation_score": 0.05, "is_new_device": true},
+    "ground_truth": "fraud",
+    "rationale_for_scoring_only": "Very low device reputation score, high-value luxury category, 12x typical amount, country mismatch, no recent travel pattern to explain it."
+  },
+  {
+    "case_id": "case_09",
+    "transaction": {
+      "transaction_id": "txn_a9", "account_id": "acct_009", "amount_usd": 118.00,
+      "merchant": "CityPower Utility Co", "merchant_category": "utilities",
+      "country": "US", "device_id": "dev_known_4c", "timestamp": "2026-08-26T08:00:00Z"
+    },
+    "account_history": {
+      "account_age_days": 3000, "typical_country": "US",
+      "typical_amount_range_usd": [90, 140],
+      "recent_transactions": [
+        {"amount_usd": 112.00, "country": "US", "minutes_ago": 43200},
+        {"amount_usd": 121.00, "country": "US", "minutes_ago": 86400}
+      ],
+      "prior_flags_count": 0
+    },
+    "device_info": {"device_id": "dev_known_4c", "reputation_score": 0.97, "is_new_device": false},
+    "ground_truth": "legit",
+    "rationale_for_scoring_only": "A recurring utility bill on a long-standing account, amount within the normal monthly range."
+  },
+  {
+    "case_id": "case_10",
+    "transaction": {
+      "transaction_id": "txn_a10", "account_id": "acct_010", "amount_usd": 95.00,
+      "merchant": "Airport Duty Free", "merchant_category": "retail",
+      "country": "JP", "device_id": "dev_known_9d", "timestamp": "2026-08-27T06:15:00Z"
+    },
+    "account_history": {
+      "account_age_days": 1800, "typical_country": "US",
+      "typical_amount_range_usd": [20, 250],
+      "recent_transactions": [
+        {"amount_usd": 340.00, "country": "JP", "minutes_ago": 90},
+        {"amount_usd": 22.00, "country": "JP", "minutes_ago": 500},
+        {"amount_usd": 60.00, "country": "US", "minutes_ago": 9000}
+      ],
+      "prior_flags_count": 0
+    },
+    "device_info": {"device_id": "dev_known_9d", "reputation_score": 0.9, "is_new_device": false},
+    "ground_truth": "legit",
+    "rationale_for_scoring_only": "HARD CASE. Country mismatch again, but this time a coherent same-trip trail (airport duty-free after a same-day, same-country purchase) plus a trusted device makes it a clean travel pattern, not takeover."
+  },
+  {
+    "case_id": "case_11",
+    "transaction": {
+      "transaction_id": "txn_a11", "account_id": "acct_011", "amount_usd": 210.00,
+      "merchant": "MidTown Pharmacy", "merchant_category": "pharmacy",
+      "country": "US", "device_id": "dev_flagged_2x", "timestamp": "2026-08-28T13:00:00Z"
+    },
+    "account_history": {
+      "account_age_days": 500, "typical_country": "US",
+      "typical_amount_range_usd": [10, 80],
+      "recent_transactions": [
+        {"amount_usd": 35.00, "country": "US", "minutes_ago": 1440}
+      ],
+      "prior_flags_count": 2
+    },
+    "device_info": {"device_id": "dev_flagged_2x", "reputation_score": 0.03, "is_new_device": false},
+    "ground_truth": "fraud",
+    "rationale_for_scoring_only": "The device itself has a very low reputation score (previously implicated elsewhere) despite not being 'new' to this account, plus two prior flags on the account and an amount above typical. Reputation score is doing the real work here — a rule that only checks 'is_new_device' would miss it."
+  },
+  {
+    "case_id": "case_12",
+    "transaction": {
+      "transaction_id": "txn_a12", "account_id": "acct_012", "amount_usd": 18500.00,
+      "merchant": "Sterling Art Auction House", "merchant_category": "luxury_goods",
+      "country": "US", "device_id": "dev_known_priv1", "timestamp": "2026-08-28T20:00:00Z"
+    },
+    "account_history": {
+      "account_age_days": 4100, "typical_country": "US",
+      "typical_amount_range_usd": [500, 25000],
+      "recent_transactions": [
+        {"amount_usd": 12000.00, "country": "US", "minutes_ago": 129600},
+        {"amount_usd": 21000.00, "country": "US", "minutes_ago": 260000}
+      ],
+      "prior_flags_count": 0
+    },
+    "device_info": {"device_id": "dev_known_priv1", "reputation_score": 0.99, "is_new_device": false},
+    "ground_truth": "legit",
+    "rationale_for_scoring_only": "Large absolute amount, but well within this specific high-net-worth account's own established range on a trusted device — this case exists to check that the agent uses THIS account's baseline, not a population-wide amount threshold."
+  }
+]

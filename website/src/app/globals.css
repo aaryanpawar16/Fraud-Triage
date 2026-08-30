@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Case-file / investigation-room palette */
+  --color-bg: #16181d;
+  --color-surface: #1e2128;
+  --color-surface-raised: #262a33;
+  --color-border: #333844;
+  --color-text: #e5e3db;
+  --color-text-dim: #93969f;
+
+  /* Semantic, not decorative — these track actual case states */
+  --color-fraud: #d9564a;
+  --color-fraud-dim: #7a332c;
+  --color-legit: #5aad7e;
+  --color-legit-dim: #325e42;
+  --color-review: #d9ad4f;
+  --color-review-dim: #7a642c;
+  --color-info: #6f97d1;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-review);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

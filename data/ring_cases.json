@@ -1,0 +1,56 @@
+[
+  {
+    "case_id": "ring_01_alpha",
+    "ground_truth_individual": "legit",
+    "description": "In isolation, nothing here is alarming: modest amount, within this new account's own typical range, device is new to this account but not otherwise flagged. A per-case triage agent has no reason to escalate this.",
+    "transaction": {
+      "transaction_id": "txn_ring_01",
+      "account_id": "acct_ring_alpha",
+      "amount_usd": 85,
+      "merchant": "QuickMart Convenience",
+      "merchant_category": "retail",
+      "country": "US",
+      "device_id": "dev_shared_x7",
+      "timestamp": "2026-01-05T10:00:00Z"
+    },
+    "account_history": {
+      "account_age_days": 45,
+      "typical_country": "US",
+      "typical_amount_range_usd": [10, 150],
+      "recent_transactions": [],
+      "prior_flags_count": 0
+    },
+    "device_info": {
+      "device_id": "dev_shared_x7",
+      "reputation_score": 0.6,
+      "is_new_device": true
+    }
+  },
+  {
+    "case_id": "ring_02_beta",
+    "ground_truth_individual": "legit",
+    "description": "Also clean in isolation — different account, different merchant, own typical range, nothing to flag on its own. The only link to ring_01_alpha is the device_id, which no single-case tool ever compares across accounts.",
+    "transaction": {
+      "transaction_id": "txn_ring_02",
+      "account_id": "acct_ring_beta",
+      "amount_usd": 62,
+      "merchant": "Downtown Pharmacy",
+      "merchant_category": "pharmacy",
+      "country": "US",
+      "device_id": "dev_shared_x7",
+      "timestamp": "2026-01-05T11:30:00Z"
+    },
+    "account_history": {
+      "account_age_days": 38,
+      "typical_country": "US",
+      "typical_amount_range_usd": [10, 120],
+      "recent_transactions": [],
+      "prior_flags_count": 0
+    },
+    "device_info": {
+      "device_id": "dev_shared_x7",
+      "reputation_score": 0.6,
+      "is_new_device": true
+    }
+  }
+]
