@@ -111,6 +111,11 @@ python3 agent/run_agent.py          # prints JSON to stdout
 ```bash
 python3 eval/run_eval.py
 ```
+## Start the backend
+
+```bash
+python -m uvicorn api_server:app --port 8000
+```
 
 This runs both systems across all 12 cases, scores against ground
 truth, and writes:
