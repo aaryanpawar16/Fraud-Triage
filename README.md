@@ -136,6 +136,7 @@ python tests/test_tools.py          # no model needed
 python eval/run_eval.py             # the real 12-case evaluation
 python eval/run_adversarial_test.py # the injection test
 python eval/run_pattern_analysis.py # the ring-detection test
+python -m uvicorn api_server:app --port 8000 # run backend
 
 cd website
 npm install
