@@ -138,7 +138,7 @@ python eval/run_adversarial_test.py # the injection test
 python eval/run_pattern_analysis.py # the ring-detection test
 python -m uvicorn api_server:app --port 8000 # run backend
 
-cd website
+cd website # on new terminal
 npm install
 npm run dev                         # the site, at localhost:3000
 ```
